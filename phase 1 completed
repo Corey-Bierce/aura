@@ -1,0 +1,62 @@
+'''
+import RPi.GPIO as GPIO 
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(19,GPIO.OUT)
+for i in range(10):
+ 
+    GPIO.output(19,GPIO.HIGH) 
+    time.sleep(.5)
+    GPIO.output(19,GPIO.LOW)
+    time.sleep(.5)
+'''  
+import pygame
+
+pygame.init()
+
+WHITE = (255, 255, 255)
+BLACK=(0,0,0)
+RED=(255,0,0)
+GREEN=(0,255,0)
+BLUE=(0,0,255)
+pygame.display.set_mode()
+scn_width=800
+scn_height=500
+screen=pygame.display.set_mode((scn_width,scn_height))
+screen.fill(WHITE)
+
+print(pygame.font.get_fonts())
+
+font = pygame.font.SysFont("freesans", 72)
+text = font.render("CODE!",True,BLACK)
+tw = text.get_width()
+th = text.get_height()
+screen_width = screen.get_width()
+screen_height = screen.get_height()
+screen.blit(text, [350, 0])
+
+pygame.draw.rect(screen, BLACK,(250,200, 100, 50))
+
+pygame.draw.circle(screen, BLACK,[50,50], 40)
+pygame.display.flip()
+
+play= input("do you wish to covert: yes or no ")
+
+if play=="yes":
+  units=input("what coversion do you want to do: time, weight, or distance? ")
+  if units == "time": 
+    conv=int(input("how many days do you want to convert to minutes? days: "))
+    print(conv, "days = ", (conv*(86400)), "minutes")
+
+  if units == "weight": 
+    conv=int(input("how many pounds do you want to convert to kilograms? pounds: "))
+    print(conv, "pounds = ", (conv/2.205), "kilograms")
+
+  if units == "distance": 
+    conv=int(input("how many miles do you want to convert to kilometers? miles: "))
+    print(conv, "miles = ", (conv*1.609), "kilometers")
+  
+else: 
+  print("ok")
